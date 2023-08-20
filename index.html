@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600&display=swap');
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+  </head>
+
+  <h1>My Weather</h1>
+
+  <form id="location-form">
+    <input type="text" class="location" placeholder="Search location..." />
+  </form>
+
+  <div id="container">
+    <div class="location-container">
+      <ul>
+        <li>
+          <div>
+            <span class="location-desc">prova</span>
+            <span class="weather-desc">Sunny</span>
+          </div>
+          <div>
+            <img
+              src="${location.weather.image}"
+              height="50"
+            />
+            33°
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div id="map"></div>
+  </div>
+</html>

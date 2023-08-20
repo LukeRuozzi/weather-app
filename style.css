@@ -1,0 +1,199 @@
+body,
+input,
+h1,
+h2 {
+  font-family: 'Dosis', sans-serif;
+}
+
+body {
+  max-width: 1200px;
+  margin: 0 20px;
+  height: 80vh;
+}
+
+input {
+  border-radius: 8px;
+  font-size: 16px;
+  height: 28px;
+  padding: 0 8px;
+  border: 2px solid lightgrey;
+}
+
+input:focus {
+  outline: none;
+  border-color: orange;
+  color: orangered;
+}
+
+#container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.location-container {
+  flex-basis: 250px;
+  flex-grow: 0;
+  overflow: auto;
+}
+
+.location-container ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  margin-right: 15px;
+}
+
+.location-container li {
+  cursor: pointer;
+  padding: 20px 30px 20px 15px;
+  border-radius: 8px;
+  background-color: rgb(53, 53, 52);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+  min-width: unset;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.location-container li::after {
+  content: '';
+  background: url('https://vectorified.com/images/font-awesome-delete-icon-6.png');
+  transform: translateX(30px);
+  transition: all ease-in 0.2s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  background-color: red;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.location-container li:hover::after {
+  transform: translateX(0);
+}
+
+.location-desc {
+  line-height: 0.9;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.weather-desc {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+}
+
+.location-container li div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.location-container li div:first-child {
+  width: 100%;
+  overflow: hidden;
+}
+
+.location-container li div:last-child {
+  align-items: center;
+  flex-basis: 50px;
+  flex-shrink: 0;
+}
+
+.location-container li div:last-child img {
+  transform: translateY(-9px);
+}
+
+#map {
+  flex-grow: 1;
+}
+
+.weather-popup .leaflet-popup-content:has(.favorite) {
+  min-width: 130px;
+}
+
+.weather-popup .leaflet-popup-content-wrapper {
+  height: 60px;
+  font-family: 'Dosis', sans-serif;
+}
+
+.weather-popup .leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: rgb(57, 58, 57);
+  color: #fff;
+}
+
+.weather-popup .leaflet-popup-content {
+  display: flex;
+  gap: 10px;
+  margin: 15px;
+  align-items: center;
+}
+
+.weather-popup .leaflet-popup-content > div {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.weather-popup .leaflet-popup-content > div:first-child {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.weather-popup .leaflet-popup-content > div:first-child span:first-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.weather-popup .leaflet-popup-content img {
+  flex-basis: 30px;
+  flex-shrink: 0;
+}
+
+.favorite {
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.favorite:hover {
+  color: #f00;
+}
+
+@media (max-width: 600px) {
+  #container {
+    flex-direction: column;
+  }
+
+  .location-container ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .location-container li {
+    min-width: 235px;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    margin: 0 auto;
+  }
+}
