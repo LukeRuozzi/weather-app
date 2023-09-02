@@ -11,6 +11,7 @@ import { Location } from './Location';
 
 export class App {
   #locations = [];
+  #lastMarker;
 
   constructor() {
     this.locationForm = document.getElementById('location-form');
@@ -162,11 +163,16 @@ export class App {
 
     if (showFav) {
       tooltipHtml += `<i class='favorite fa fa-heart' data-lat='${location.latLng.lat}' data-lng='${location.latLng.lng}'></i>`;
+
+      if (this.#lastMarker) {
+        this._map.removeLayer(this.#lastMarker);
+      }
     }
 
     const coords = [location.latLng.lat, location.latLng.lng];
-    const markerPopup = L.marker(coords)
-      .addTo(this._map)
+
+    this.#lastMarker = L.marker(coords).addTo(this._map);
+    const markerPopup = this.#lastMarker
       .bindPopup(tooltipHtml, {
         maxWidth: 250,
         minWidth: 100,
@@ -194,6 +200,10 @@ export class App {
         }
       });
 
+    if (!showFav) {
+      this.#lastMarker = null;
+    }
+
     if (open) {
       markerPopup.openPopup();
     }
@@ -219,7 +229,7 @@ export class App {
     this._moveMapToLocation(firstLocationObj);
 
     locations.forEach((locationObj, idx) => {
-      this._addMarker(locationObj, idx === 0);
+      this._addMarker(locationObj, idx === 0, false);
     });
   }
 
@@ -317,6 +327,10 @@ export class App {
   }
 
   _addMapPointToFavorite(marker, e) {
+    if (this.#lastMarker) {
+      this._map.removeLayer(this.#lastMarker);
+    }
+
     marker.closePopup();
     const lat = e.target.getAttribute('data-lat');
     const lng = e.target.getAttribute('data-lng');
